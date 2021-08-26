@@ -39,9 +39,9 @@ const processFilesAndUpdateProgress = (progressCallback) => {
     if (progressInformation.percentageProcessed >= 99) {
 
     } else {
-      progressInformation.percentageProcessed += Math.round(Math.random() * 5) // add random increment for realism
+      progressInformation.percentageProcessed += Math.round(Math.random() * 4) // add random increment for realism
       setTimeout(updateProgress, Math.round(Math.random() * 1500)) // make subsequent calls to update progress bar random for realism
     }
   }
-  setTimeout(updateProgress, 100) // // make initial call to update progress bar
+  setTimeout(updateProgress, 3500) // // make initial call to update progress bar
 }
