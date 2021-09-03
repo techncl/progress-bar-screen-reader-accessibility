@@ -47,13 +47,14 @@ const updateProgressBarCallback = (progressInformation) => {
 }
 
 function main() {
-  document.querySelector("#start-upload-button").addEventListener("click", ()=>{
+  document.querySelector("#start-upload-button").addEventListener("click", ()=> {
     document.querySelector("#progress-bar-and-message").removeAttribute("hidden")
     document.querySelector("#start-upload-button").setAttribute("hidden", "true")
+    processFilesAndUpdateProgress(
+      throttleProgressBarUpdates(updateProgressBarCallback)
+    )
   })
-  processFilesAndUpdateProgress(
-    throttleProgressBarUpdates(updateProgressBarCallback)
-  )
+
 }
 
 setTimeout(main, 10)

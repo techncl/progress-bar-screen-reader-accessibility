@@ -58,17 +58,19 @@ const updateScreenReaderCallback = (progressInformation) => {
 }
 
 function main() {
-  document.querySelector("#start-upload-button").addEventListener("click", ()=>{
+  document.querySelector("#start-upload-button").addEventListener("click", ()=> {
     document.querySelector("#progress-bar-and-message").removeAttribute("hidden")
     document.querySelector("#start-upload-button").setAttribute("hidden", "true")
+
+    const screenReaderCallback = throttleProgressBarUpdates(updateScreenReaderCallback)
+    processFilesAndUpdateProgress(
+      (progressInformation) => {
+        updateProgressBarCallback(progressInformation)
+        screenReaderCallback(progressInformation)
+      }
+    )
   })
-  const screenReaderCallback = throttleProgressBarUpdates(updateScreenReaderCallback)
-  processFilesAndUpdateProgress(
-    (progressInformation) => {
-      updateProgressBarCallback(progressInformation)
-      screenReaderCallback(progressInformation)
-    }
-  )
+
 }
 
 setTimeout(main, 10)
